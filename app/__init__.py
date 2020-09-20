@@ -8,6 +8,8 @@ from flask_login import LoginManager
 
 from flask_mail import Mail
 
+from flask_bootstrap import Bootstrap
+
 import os
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
@@ -26,6 +28,9 @@ login.login_view = 'login'
 
 # email
 mail = Mail(app)
+
+# bootstrap
+bootstrap = Bootstrap(app)
 
 # envio de log de erros por email e arquivo de log
 if not app.debug:
