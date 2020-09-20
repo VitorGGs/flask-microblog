@@ -1,16 +1,14 @@
-from flask import Flask
+from flask import Flask, request
 from config import Config
 
+# extensões
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
 from flask_login import LoginManager
-
 from flask_mail import Mail
-
 from flask_bootstrap import Bootstrap
-
 from flask_moment import Moment
+from flask_babel import Babel, lazy_gettext as _l
 
 import os
 import logging
@@ -27,6 +25,7 @@ migrate = Migrate(app, db)
 # Login
 login = LoginManager(app)
 login.login_view = 'login'
+login.login_message = _l('Please log in to access this page.')
 
 # email
 mail = Mail(app)
@@ -36,6 +35,11 @@ bootstrap = Bootstrap(app)
 
 # datas e horarios
 moment = Moment(app)
+
+# tradução
+babel = Babel(app)
+
+
 
 # envio de log de erros por email e arquivo de log
 if not app.debug:
@@ -68,5 +72,9 @@ if not app.debug:
 	app.logger.setLevel(logging.INFO)
 	app.logger.info('Microblog startup')
 
+
+@babel.localeselector
+def get_locale():
+	return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 from app import routes, models, errors
