@@ -6,6 +6,8 @@ from flask_migrate import Migrate
 
 from flask_login import LoginManager
 
+from flask_mail import Mail
+
 import os
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
@@ -21,6 +23,9 @@ migrate = Migrate(app, db)
 # Login
 login = LoginManager(app)
 login.login_view = 'login'
+
+# email
+mail = Mail(app)
 
 # envio de log de erros por email e arquivo de log
 if not app.debug:
@@ -44,7 +49,7 @@ if not app.debug:
 	if not os.path.exists('logs'):
 		os.mkdir('logs')
 	file_handler = RotatingFileHandler('logs/microblog.log', maxBytes=10240,
-										backupCount=10)
+									   backupCount=10)
 	file_handler.setFormatter(logging.Formatter(
 		'%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
 	file_handler.setLevel(logging.INFO)
