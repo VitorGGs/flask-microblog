@@ -10,6 +10,8 @@ from flask_mail import Mail
 
 from flask_bootstrap import Bootstrap
 
+from flask_moment import Moment
+
 import os
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
@@ -31,6 +33,9 @@ mail = Mail(app)
 
 # bootstrap
 bootstrap = Bootstrap(app)
+
+# datas e horarios
+moment = Moment(app)
 
 # envio de log de erros por email e arquivo de log
 if not app.debug:
