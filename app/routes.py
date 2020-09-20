@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 from app.forms import (
     LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm,
-    ResetPasswordRequestForm
+    ResetPasswordRequestForm, ResetPasswordForm
 )
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
@@ -218,6 +218,6 @@ def reset_password(token):
         user.set_password(form.password.data)
         db.session.commit()
         flash('Your password has been set.')
-        return redirec(url_for('login'))
+        return redirect(url_for('login'))
 
     return render_template('reset_password.html', form=form)
