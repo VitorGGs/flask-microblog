@@ -1,4 +1,4 @@
 [flake8]
-ignore = W191
+ignore = W191, E101
 max-line-length = 120
-exclude=.env, migrations, __init__.py
+exclude=.env, migrations, __init__.py, microblog.py
