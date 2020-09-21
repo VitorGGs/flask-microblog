@@ -3,14 +3,13 @@
 
 [![Build Status](https://travis-ci.org/VitorGGs/flask-microblog.svg?branch=master)](https://travis-ci.org/VitorGGs/flask-microblog)
 
-
-[](https://flask-mini-blog-br.herokuapp.com)
-
 This is a microblog, build with Flask and deployed on heroku.
+[click here](https://flask-mini-blog-br.herokuapp.com)
 
 
 # Some features
 
+- REST API
 - user authentication
 - follow users
 - email support
